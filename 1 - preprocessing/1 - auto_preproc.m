@@ -15,7 +15,8 @@ ALLEEG = pop_resample(ALLEEG, 1000);
 % compute average reference
 ALLEEG = pop_reref( ALLEEG,[]);
 
-% clean data using the clean_rawdata plugin
+% clean data using the clean_rawdata plugin, change parameters based on
+% data
 ALLEEG = pop_clean_rawdata( ALLEEG,'FlatlineCriterion',10,'ChannelCriterion',0.7, ...
     'LineNoiseCriterion',5,'Highpass',[0.75 1.25] ,'BurstCriterion',30, ...
     'WindowCriterion','off','BurstRejection','on','Distance','Euclidian', ...
