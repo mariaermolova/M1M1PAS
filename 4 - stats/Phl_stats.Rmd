@@ -1,0 +1,82 @@
+---
+title: "Phase lag analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
+```
+
+```{r libraries}
+library(circular)
+```
+
+```{r}
+setwd("W:/Projects/2019-04 M1M1PAS Project/analysis/source_signals/fc_source")
+
+FCdata <- read.csv('sourcePhLag.csv', header=TRUE, sep=',', dec='.')
+FCdata$Subject <- factor(FCdata$subject)
+FCdata$Intervention <- factor(FCdata$task)
+FCdata$Time <- factor(FCdata$run,levels=c("1","2","3","4","5"))
+FCdata$phase_lag <- as.numeric(FCdata$phase_lag)
+
+```
+
+## The effect of Intervention in Pre-Post difference
+
+```{r}
+
+# get unique tasks and subjects
+Interventions <- unique(FCdata$Intervention)
+Subjects <- unique(FCdata$Subject)
+
+# placeholder for mean phase lag differences
+anova_data <- data.frame(Intervention = character(), phase_diff = numeric())
+
+# iterate through each task and subject
+for (thisIntervention in Interventions) {
+  for (thisSubject in Subjects) {
+    # filter Pre runs (1, 2)
+    pre_df <- subset(FCdata, Subject == thisSubject & Intervention == thisIntervention & Time %in% c("1", "2"))
+    pre_phases <- pre_df$phase_lag %% (2 * pi)
+    
+    # filter Post runs (3, 4, 5)
+    post_df <- subset(FCdata, Subject == thisSubject & Intervention == thisIntervention & Time %in% c("3", "4", "5"))
+    post_phases <- post_df$phase_lag %% (2 * pi)
+    
+    # compute circular means
+    circular_mean_pre <- mean(circular(pre_phases))
+    circular_mean_post <- mean(circular(post_phases))
+    
+    # compute difference (Post - Pre) and normalize
+    phase_diff <- (circular_mean_post - circular_mean_pre) %% (2 * pi)
+    
+    # append
+    anova_data <- rbind(anova_data, data.frame(Intervention = thisIntervention, phase_diff = phase_diff))
+  }
+}
+
+# convert phase_diff to circular object
+anova_data$phase_diff <- circular(anova_data$phase_diff)
+
+# circular ANOVA
+result <- aov.circular(anova_data$phase_diff, anova_data$Intervention, method = c("LRT"))
+print(result)
+
+```
+
+## The effect of subject on phase lag distribution
+
+```{r}
+
+# subject list
+subject <- FCdata$Subject
+
+# convert phase lags to a circular object
+phase_lag <- circular(FCdata$phase_lag) %% (2 * pi)
+
+# circular ANOVA
+result <- aov.circular(phase_lag, subject, method = c("LRT"))
+print(result)
+
+```
