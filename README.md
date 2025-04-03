@@ -8,8 +8,6 @@ Analysis code for the article "Ermolova, M., Kozak, G., Belardinelli, P., Zieman
 "2 - source" code for source reconstruction.
   "1 - calculate_leadfield.m" compute leadfield for each subject and each session
   "2 - beamformer.m" reconstruct source signals from right and left sensorimotor cortex
-  "C_LR.mat" indicies for the dipoles of interest
-  "ATLAS_GLASSER" atlas for the dipoles
 "3 - fc" code for functional connectivity and phase lag analysis.
   "connectivity_calc.ipynb" functional connectivity analysis
   "phase_lags_calc.ipynb" phase lag analysis
