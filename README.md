@@ -1,5 +1,7 @@
 # M1M1PAS
-Analysis code for the article "Ermolova, M., Kozak, G., Belardinelli, P., Ziemann, U. (2025). Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation"
+Analysis code for the article: Ermolova, M., Kozak, G., Belardinelli, P., & Ziemann, U. (2025). Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation. bioRxiv, 2025-04.
+
+The dataset used by the code: Ermolova, M., Kozak, G., Belardinelli, P., & Ziemann, U. (2025). Dataset for the article "Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation" [Data set]. Zenodo. https://doi.org/10.5281/zenodo.15126575
 
 "1 - preprocessing.m" code for EEG preprocessing.
   "1 - auto_preproc.m" automatic preprocessing of EEG data.
