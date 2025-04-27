@@ -22,11 +22,10 @@ library(rstatix) #pretty tables
 setwd("W:/Projects/2019-04 M1M1PAS Project/analysis/M1M1PASgit")
 
 FCdata <- read.csv('sourceConnectivity.csv', header=TRUE, sep=',', dec='.')
-FCdata$Subject <- factor(FCdata$subject)
-FCdata$Intervention <- factor(FCdata$task,levels=c("random","negneg","negpos","posneg"))
-FCdata$Time <- factor(FCdata$run,levels=c("2","1","3","4","5")) # !!!Baseline 2 is ref, it comes first in plots
-FCdata$wPLI <- as.numeric(FCdata$wpli)
-FCdata$Response <- FCdata$wPLI
+FCdata$Subject <- factor(FCdata$Subject)
+FCdata$Intervention <- factor(FCdata$Intervention,levels=c("random","negneg","negpos","posneg"))
+FCdata$Time <- factor(FCdata$Time,levels=c("2","1","3","4","5")) # !!!Baseline 2 is ref, it comes first in plots
+FCdata$Response <- as.numeric(FCdata$wpli)
 ```
 
 ## Check distribution of the dependant variable

@@ -15,10 +15,10 @@ library(circular)
 setwd("W:/Projects/2019-04 M1M1PAS Project/analysis/source_signals/fc_source")
 
 FCdata <- read.csv('sourcePhLag.csv', header=TRUE, sep=',', dec='.')
-FCdata$Subject <- factor(FCdata$subject)
-FCdata$Intervention <- factor(FCdata$task)
-FCdata$Time <- factor(FCdata$run,levels=c("1","2","3","4","5"))
-FCdata$phase_lag <- as.numeric(FCdata$phase_lag)
+FCdata$Subject <- factor(FCdata$Subject)
+FCdata$Intervention <- factor(FCdata$Intervention)
+FCdata$Time <- factor(FCdata$Time,levels=c("1","2","3","4","5"))
+FCdata$Phase_lag <- as.numeric(FCdata$Phase_lag)
 
 ```
 
@@ -38,11 +38,11 @@ for (thisIntervention in Interventions) {
   for (thisSubject in Subjects) {
     # filter Pre runs (1, 2)
     pre_df <- subset(FCdata, Subject == thisSubject & Intervention == thisIntervention & Time %in% c("1", "2"))
-    pre_phases <- pre_df$phase_lag %% (2 * pi)
+    pre_phases <- pre_df$Phase_lag %% (2 * pi)
     
     # filter Post runs (3, 4, 5)
     post_df <- subset(FCdata, Subject == thisSubject & Intervention == thisIntervention & Time %in% c("3", "4", "5"))
-    post_phases <- post_df$phase_lag %% (2 * pi)
+    post_phases <- post_df$Phase_lag %% (2 * pi)
     
     # compute circular means
     circular_mean_pre <- mean(circular(pre_phases))
@@ -73,7 +73,7 @@ print(result)
 subject <- FCdata$Subject
 
 # convert phase lags to a circular object
-phase_lag <- circular(FCdata$phase_lag) %% (2 * pi)
+phase_lag <- circular(FCdata$Phase_lag) %% (2 * pi)
 
 # circular ANOVA
 result <- aov.circular(phase_lag, subject, method = c("LRT"))
