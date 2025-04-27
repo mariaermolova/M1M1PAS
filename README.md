@@ -1,5 +1,5 @@
 # M1M1PAS
-This is analysis code for the article: Ermolova, M., Kozak, G., Belardinelli, P., & Ziemann, U. (2025). Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation. bioRxiv, 2025-04.
+This is analysis code for the article Ermolova, M., Kozak, G., Belardinelli, P., & Ziemann, U. (2025). Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation. bioRxiv, 2025-04.
 
 Dataset used in the analysis: Ermolova, M., Kozak, G., Belardinelli, P., & Ziemann, U. (2025). Dataset for the article "Plasticity of interhemispheric motor cortex connectivity induced by brain state-dependent cortico-cortical paired-associative stimulation" [Data set]. Zenodo. https://doi.org/10.5281/zenodo.15126575
 
